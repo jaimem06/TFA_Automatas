@@ -1,0 +1,84 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  color: #333;
+}
+
+.sidebar {
+  width: 250px;
+  background: #1B5E20;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #FFB74D;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: #FAFAFA;
+}
+
+.section {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+h1, h2 {
+  color: #1B5E20;
+}
+
+textarea, input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #388E3C;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus, input[type="text"]:focus {
+  border-color: #FF9800;
+  outline: none;
+}
+
+#result, #wordResult {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1B5E20;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#result, #wordResult {
+  animation: fadeIn 0.5s ease;
+}

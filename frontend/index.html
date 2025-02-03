@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificación de Comentarios Ofensivos</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/button.css">
+</head>
+<body>
+    <div class="sidebar">
+        <a href="#analyze">Analizar Comentarios</a>
+        <a href="#add-word">Agregar Palabra Ofensiva</a>
+        <a href="#list-words">Listar Palabras Ofensivas</a>
+    </div>
+    <div class="main-content">
+        <div id="analyze" class="section">
+            <h1>Analizador de texto Ofensivo</h1>
+            <textarea id="comment" placeholder="Escribe un comentario..."></textarea>
+            <button onclick="analyzeComment()">Analizar</button>
+            <p id="result"></p>
+        </div>
+        <div id="add-word" class="section" style="display:none;">
+            <h2>Agregar Palabra Ofensiva</h2>
+            <input type="text" id="newWord" placeholder="Escribe una nueva palabra ofensiva">
+            <button onclick="addWord()">Agregar</button>
+            <p id="wordResult"></p>
+        </div>
+        <div id="list-words" class="section" style="display:none;">
+            <h2>Lista de Palabras Ofensivas</h2>
+            <ul id="wordList"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.sidebar a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                document.querySelector(this.getAttribute('href')).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
