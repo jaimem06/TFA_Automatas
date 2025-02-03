@@ -5,6 +5,7 @@ body {
   height: 100vh;
   margin: 0;
   color: #333;
+  font-size: 14px;
 }
 
 .sidebar {
@@ -49,6 +50,7 @@ body {
 }
 
 h1, h2 {
+  font-size: 0.9rem;
   color: #1B5E20;
 }
 
@@ -57,7 +59,6 @@ textarea, input[type="text"] {
   padding: 10px;
   border: 2px solid #388E3C;
   border-radius: 8px;
-  font-size: 1rem;
   margin-bottom: 1rem;
   transition: border-color 0.3s ease;
 }
@@ -69,7 +70,6 @@ textarea:focus, input[type="text"]:focus {
 
 #result, #wordResult {
   margin-top: 1.5rem;
-  font-size: 1.2rem;
   font-weight: bold;
   color: #1B5E20;
 }

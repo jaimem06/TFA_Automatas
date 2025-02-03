@@ -21,14 +21,16 @@ function displayAnalysisResult(comment, offensiveWords) {
 
   originalText.textContent = comment;
 
-  const words = comment.split(' ');
+  const words = comment.split(/\s+/).filter(word => word.match(/\w+/)); // Exclude punctuation
   const highlightedText = words.map(word => {
-    return offensiveWords.includes(word.toLowerCase()) ? `<span class="offensive-word">${word}</span>` : word;
+    return offensiveWords.includes(word.toLowerCase()) ? `<span class="offensive-word" style="color: red;">${word}</span>` : word;
   }).join(' ');
 
   analyzedText.innerHTML = highlightedText;
 
-  const percentage = (offensiveWords.length / words.length) * 100;
+  const offensiveCount = words.filter(word => offensiveWords.includes(word.toLowerCase())).length;
+  const weight = offensiveCount > 0 ? 2 : 1; // Aumentar el peso si hay palabras ofensivas
+  const percentage = (offensiveCount * weight / words.length) * 100;
   offensivePercentage.textContent = `Porcentaje de ofensividad: ${percentage.toFixed(2)}%`;
 }
 
