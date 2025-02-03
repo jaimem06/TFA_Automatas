@@ -14,6 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar a {
@@ -36,6 +37,7 @@ body {
   align-items: center;
   padding: 2rem;
   background: #FAFAFA;
+  overflow-y: auto;
 }
 
 .section {
@@ -46,10 +48,17 @@ body {
   text-align: center;
   width: 100%;
   max-width: 800px;
+  margin-bottom: 2rem;
 }
 
 h1, h2 {
   color: #1B5E20;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #555;
 }
 
 textarea, input[type="text"] {
@@ -82,7 +91,7 @@ button:hover {
   background-color: #FF9800;
 }
 
-#result, #wordResult {
+#result, #wordResult, #deleteResult {
   margin-top: 1.5rem;
   font-size: 1.2rem;
   font-weight: bold;
@@ -94,6 +103,135 @@ button:hover {
   to { opacity: 1; }
 }
 
-#result, #wordResult {
+#result, #wordResult, #deleteResult {
   animation: fadeIn 0.5s ease;
+}
+
+.split-view {
+  display: flex;
+  justify-content: space-between;
+}
+
+.split-view .half {
+  width: 48%;
+}
+
+.analyzed-section {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.offensive-word {
+  color: red;
+  font-weight: bold;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  background-color: #388E3C;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #FF9800;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.radio-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.radio-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__input:checked + .radio-button__label .radio-button__custom {
+  transform: translateY(-50%) scale(0.9);
+  border: 5px solid #4c8bf5;
+  color: #4c8bf5;
+}
+
+.radio-button__input:checked + .radio-button__label {
+  color: #4c8bf5;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: translateY(-50%) scale(1.2);
+  border-color: #4c8bf5;
+  box-shadow: 0 0 10px #4c8bf580;
 }

@@ -6,17 +6,38 @@
     <title>Identificación de Comentarios Ofensivos</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/button.css">
+    <link rel="stylesheet" href="styles/table.css">
 </head>
 <body>
     <div class="sidebar">
+        <h2>Dashboard</h2>
         <a href="#analyze">Analizar Comentarios</a>
         <a href="#add-word">Agregar Palabra Ofensiva</a>
         <a href="#list-words">Listar Palabras Ofensivas</a>
+        <a href="#delete-word">Eliminar Palabra Ofensiva</a>
     </div>
     <div class="main-content">
         <div id="analyze" class="section">
             <h1>Analizador de texto Ofensivo</h1>
-            <textarea id="comment" placeholder="Escribe un comentario..."></textarea>
+            <div class="split-view">
+                <div class="half">
+                    <textarea id="comment" placeholder="Escribe un comentario..."></textarea>
+                </div>
+                <div class="half">
+                    <div class="analyzed-section">
+                        <h2>Texto Original</h2>
+                        <div id="originalText"></div>
+                    </div>
+                    <div class="analyzed-section">
+                        <h2>Texto Analizado</h2>
+                        <div id="analyzedText"></div>
+                    </div>
+                    <div class="analyzed-section">
+                        <h2>Porcentaje de Ofensividad</h2>
+                        <div id="offensivePercentage"></div>
+                    </div>
+                </div>
+            </div>
             <button onclick="analyzeComment()">Analizar</button>
             <p id="result"></p>
         </div>
@@ -29,6 +50,59 @@
         <div id="list-words" class="section" style="display:none;">
             <h2>Lista de Palabras Ofensivas</h2>
             <ul id="wordList"></ul>
+            <div class="pagination">
+                <div class="radio-buttons-container">
+                    <div class="radio-button">
+                        <input type="radio" id="prevPage" class="radio-button__input" name="pagination">
+                        <label for="prevPage" class="radio-button__label">
+                            <span class="radio-button__custom"></span>
+                            Anterior
+                        </label>
+                    </div>
+                    <span>Página <span id="currentPage"></span> de <span id="totalPages"></span></span>
+                    <div class="radio-button">
+                        <input type="radio" id="nextPage" class="radio-button__input" name="pagination">
+                        <label for="nextPage" class="radio-button__label">
+                            <span class="radio-button__custom"></span>
+                            Siguiente
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="delete-word" class="section" style="display:none;">
+            <h2>Eliminar Palabra Ofensiva</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Palabra</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="deleteWordList"></tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <div class="radio-buttons-container">
+                    <div class="radio-button">
+                        <input type="radio" id="prevPage" class="radio-button__input" name="pagination">
+                        <label for="prevPage" class="radio-button__label">
+                            <span class="radio-button__custom"></span>
+                            Anterior
+                        </label>
+                    </div>
+                    <span>Página <span id="currentPage"></span> de <span id="totalPages"></span></span>
+                    <div class="radio-button">
+                        <input type="radio" id="nextPage" class="radio-button__input" name="pagination">
+                        <label for="nextPage" class="radio-button__label">
+                            <span class="radio-button__custom"></span>
+                            Siguiente
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <p id="deleteResult"></p>
         </div>
     </div>
     <script src="script.js"></script>
@@ -39,6 +113,10 @@
                     section.style.display = 'none';
                 });
                 document.querySelector(this.getAttribute('href')).style.display = 'block';
+                if (this.getAttribute('href') === '#delete-word') {
+                    listWords(); // Ensure the word list is refreshed when navigating to the delete word section
+                    displayWordsForDeletion();
+                }
             });
         });
     </script>
